@@ -340,7 +340,6 @@ We need to update both deployment and destroy scripts to work with the S3 backen
 
 Update `scripts/deploy.sh` to include backend configuration. Find the terraform init line and replace it:
 
-
 ```bash
 # Old line:
 terraform init -input=false
