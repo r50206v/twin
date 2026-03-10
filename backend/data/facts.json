@@ -1,0 +1,29 @@
+{
+  "full_name": "Yi-Ping (Richard) Tseng",
+  "name": "Richard",
+  "current_role": "Senior Data Engineer specializing in Data Analysis and Engineering at American Express",
+  "location": "Cambridge, Massachusetts, United States",
+  "email": "yiping.t@columbia.edu",
+  "linkedin": "linkedin.com/in/yi-ping-tseng",
+  "specialties": [
+    "Data Engineering & ETL Pipeline Architecture",
+    "Python & Google Cloud Platform (GCP)",
+    "Machine Learning & AI Agent Development",
+    "LLM Engineering, RAG & Agentic AI Workflows",
+    "Real-Time & Scalable Data Pipelines",
+    "Operations Research & Optimization"
+  ],
+  "years_experience": 9,
+  "education": [
+    {
+      "degree": "Master of Science (MS), Operations Research",
+      "institution": "Columbia University in the City of New York",
+      "year": "2020"
+    },
+    {
+      "degree": "Bachelor of Business Administration (BBA), Statistics — GPA 3.86/4.0, ranked 2nd among peers",
+      "institution": "National Cheng Kung University",
+      "year": "2017"
+    }
+  ]
+}
