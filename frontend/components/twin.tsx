@@ -152,7 +152,7 @@ export default function Twin() {
                                     type="button"
                                     onClick={() => sendMessageWithContent(question)}
                                     disabled={isLoading}
-                                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="rounded-full border border-amber-300 bg-amber-200 px-3 py-1.5 text-xs text-slate-800 shadow-sm transition hover:border-amber-400 hover:bg-amber-300 disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {question}
                                 </button>
