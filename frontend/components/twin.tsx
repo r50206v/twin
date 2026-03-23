@@ -10,6 +10,12 @@ interface Message {
     timestamp: Date;
 }
 
+const STARTER_QUESTIONS = [
+    'Where have you worked?',
+    "What's your tech stack?",
+    'Tell me a fun fact about you.',
+] as const;
+
 export default function Twin() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
@@ -26,13 +32,14 @@ export default function Twin() {
         scrollToBottom();
     }, [messages]);
 
-    const sendMessage = async () => {
-        if (!input.trim() || isLoading) return;
+    const sendMessageWithContent = async (text: string) => {
+        const trimmed = text.trim();
+        if (!trimmed || isLoading) return;
 
         const userMessage: Message = {
             id: Date.now().toString(),
             role: 'user',
-            content: input,
+            content: trimmed,
             timestamp: new Date(),
         };
 
@@ -86,6 +93,10 @@ export default function Twin() {
         }
     };
 
+    const sendMessage = async () => {
+        await sendMessageWithContent(input);
+    };
+
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -105,12 +116,12 @@ export default function Twin() {
     return (
         <div className="flex flex-col h-full bg-gray-50 rounded-lg shadow-lg">
             {/* Header */}
-            <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4 rounded-t-lg">
+            <div className="bg-gradient-to-r from-[#0f2744] to-[#0c1e3c] text-white p-4 rounded-t-lg border-b border-white/10">
                 <h2 className="text-xl font-semibold flex items-center gap-2">
                     <Bot className="w-6 h-6" />
-                    AI Digital Twin
+                    Richard's Digital Twin
                 </h2>
-                <p className="text-sm text-slate-300 mt-1">Your AI course companion</p>
+                <p className="text-sm text-slate-300 mt-1">The real Richard, minus the wait  🚌</p>
             </div>
 
             {/* Messages */}
@@ -126,8 +137,27 @@ export default function Twin() {
                         ) : (
                             <Bot className="w-12 h-12 mx-auto mb-3 text-gray-400" />
                         )}
-                        <p>Hello! I&apos;m your Digital Twin.</p>
-                        <p className="text-sm mt-2">Ask me anything about AI deployment!</p>
+                        <p className="max-w-md mx-auto">
+                            Hey! I&apos;m Richard&apos;s AI twin — a Senior Data Engineer based in Boston who loves
+                            building things, traveling, and collecting random facts.
+                        </p>
+                        <p className="text-sm mt-3 max-w-md mx-auto">
+                            Ask me about my work at American Express, my side projects, or just something you&apos;re
+                            curious about. I don&apos;t bite. 😄
+                        </p>
+                        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 px-2">
+                            {STARTER_QUESTIONS.map((question) => (
+                                <button
+                                    key={question}
+                                    type="button"
+                                    onClick={() => sendMessageWithContent(question)}
+                                    disabled={isLoading}
+                                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                    {question}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -157,14 +187,14 @@ export default function Twin() {
                         <div
                             className={`max-w-[70%] rounded-lg p-3 ${
                                 message.role === 'user'
-                                    ? 'bg-slate-700 text-white'
+                                    ? 'bg-amber-200 text-slate-900'
                                     : 'bg-white border border-gray-200 text-gray-800'
                             }`}
                         >
                             <p className="whitespace-pre-wrap">{message.content}</p>
                             <p
                                 className={`text-xs mt-1 ${
-                                    message.role === 'user' ? 'text-slate-300' : 'text-gray-500'
+                                    message.role === 'user' ? 'text-slate-700' : 'text-gray-500'
                                 }`}
                             >
                                 {message.timestamp.toLocaleTimeString()}
